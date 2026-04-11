@@ -169,7 +169,7 @@
     /* ===== HERO ===== */
     #home {
       min-height: 100vh;
-      background: linear-gradient(135deg, #0a1628 0%, #112240 50%, #0d1e35 100%);
+      background: url('https://i.ibb.co/JWXvx4Cj/e238dcf62a46.jpg') center center / cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -183,9 +183,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(201,168,76,0.08) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 50%);
+      background: linear-gradient(135deg, rgba(10,22,40,0.82) 0%, rgba(17,34,64,0.75) 50%, rgba(13,30,53,0.82) 100%);
     }
 
     /* Decorative grid lines */
@@ -772,14 +770,7 @@
   <div class="container">
     <div class="about-grid">
       <div class="about-img-wrap">
-        <!-- Oil refinery visual placeholder with gradient -->
-        <div style="width:100%;height:440px;background:linear-gradient(135deg,#0a1628 0%,#1a3a5c 40%,#2d5a8e 70%,#1a3a5c 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
-          <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 70%,rgba(201,168,76,0.15) 0%,transparent 50%);"></div>
-          <div style="text-align:center;color:rgba(255,255,255,0.6);position:relative;z-index:1;">
-            <svg width="80" height="80" fill="none" stroke="rgba(201,168,76,0.6)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            <p style="margin-top:12px;font-size:13px;letter-spacing:0.1em;color:rgba(201,168,76,0.7);">FABER OIL &amp; GAS B.V.</p>
-          </div>
-        </div>
+        <img src="https://i.ibb.co/60JD8gSB/7cfe305faa01.jpg" alt="Oil refinery" style="width:100%;height:440px;object-fit:cover;display:block;" />
       </div>
       <div class="about-text">
         <span class="section-label">About Us</span>
@@ -968,8 +959,8 @@
           <div class="contact-icon">✉️</div>
           <div>
             <h4>Email</h4>
-            <a href="mailto:Trading@faber-oil.com">Trading@faber-oil.com</a>
-            <a href="mailto:Info@faber-oil.com" style="margin-top:2px;">Info@faber-oil.com</a>
+            <a href="mailto:trading@faber-oil.com">trading@faber-oil.com</a>
+            <a href="mailto:info@faber-oil.com" style="margin-top:2px;">info@faber-oil.com</a>
           </div>
         </div>
       </div>
@@ -1022,8 +1013,8 @@
           <p>Koggewal 2, 2317 GM Leiden</p>
           <p>The Netherlands</p>
           <a href="tel:+3197010268868">+3197010268868</a>
-          <a href="mailto:Trading@faber-oil.com">Trading@faber-oil.com</a>
-          <a href="mailto:Info@faber-oil.com">Info@faber-oil.com</a>
+          <a href="mailto:trading@faber-oil.com">trading@faber-oil.com</a>
+          <a href="mailto:info@faber-oil.com">info@faber-oil.com</a>
         </div>
       </div>
     </div>
@@ -1050,26 +1041,42 @@
 
   ham.addEventListener('click', () => {
     const open = mob.classList.toggle('open');
-    iconMenu.style.display = open ? 'none' : 'block';
+    iconMenu.style.display  = open ? 'none'  : 'block';
     iconClose.style.display = open ? 'block' : 'none';
   });
 
+  // Close mobile menu when a link is clicked
   function closeMob() {
     mob.classList.remove('open');
-    iconMenu.style.display = 'block';
+    iconMenu.style.display  = 'block';
     iconClose.style.display = 'none';
   }
 
-  // Contact form
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
+  // Contact form submit
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
-    alert('Thank you for your message! We will get back to you shortly.');
-    this.reset();
+    const btn = form.querySelector('.btn-submit');
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = '#4caf50';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message';
+      btn.style.background = '';
+      btn.disabled = false;
+      form.reset();
+    }, 3000);
   });
 
-  // Smooth close mobile on nav link
-  document.querySelectorAll('.mobile-menu a').forEach(a => {
-    a.addEventListener('click', closeMob);
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
   });
 </script>
 </body>
