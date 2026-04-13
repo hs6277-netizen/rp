@@ -707,6 +707,17 @@
       .footer-bottom { flex-direction: column; text-align: center; }
     }
 
+    /* ===== HERO LOGO IMAGE ===== */
+    .logo_image {
+      display: block;
+      max-height: 90px;
+      width: auto;
+      max-width: 280px;
+      margin: 0 auto 24px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+    }
+
     /* SVG icons inline */
     .icon { display: inline-block; vertical-align: middle; }
   </style>
@@ -752,6 +763,7 @@
 <!-- HERO -->
 <section id="home">
   <div class="hero-content">
+    <img class="logo_image" src="https://i.ibb.co/pBc5W23d/512e1b3c6a7c.png" alt="Faber Oil & Gas Logo">
     <span class="hero-badge">✦ Trusted Energy Partner</span>
     <h1>Powering Your<br><span class="gold-text">Success</span></h1>
     <p class="hero-desc">
@@ -1064,19 +1076,7 @@
       btn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message';
       btn.style.background = '';
       btn.disabled = false;
-      form.reset();
-    }, 3000);
-  });
-
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', (e) => {
-      const target = document.querySelector(anchor.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
+    }, 4000);
   });
 </script>
 </body>
